@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Interactive Data Table</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+    }
+    h1 {
+      text-align: center;
+    }
+    p {
+      text-align: center;
+      font-size: 1.1em;
+    }
+    table {
+      border-collapse: collapse;
+      width: 100%;
+      margin-top: 20px;
+    }
+    th, td {
+      border: 1px solid #ccc;
+      padding: 8px 12px;
+      text-align: left;
+    }
+    th {
+      background-color: #f4f4f4;
+    }
+    /* Highlight class for cells on hover */
+    .highlight {
+      background-color: #ffeb3b; /* Yellow */
+    }
+  </style>
+</head>
+<body>
+  <h1>Interactive Data Table</h1>
+  <p>Hover over any term to highlight matching terms across the table.</p>
+
+  <!-- Replace the table below with your actual data. -->
+  <table id="dataTable">
+    <thead>
+      <tr>
+        <th>Rank</th>
+        <th>process</th>
+        <th>innovation</th>
+        <th>imagination</th>
+        <th>problem</th>
+        <th>originality</th>
+        <th>product</th>
+        <th>person</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>1</td>
+        <td>Proc1 (M=3.60, SD=0.52)</td>
+        <td>Innov1 (M=4.10, SD=0.43)</td>
+        <td>Imag1 (M=4.30, SD=0.32)</td>
+        <td>Prob1 (M=3.90, SD=0.62)</td>
+        <td>Orig1 (M=4.60, SD=0.22)</td>
+        <td>Prod1 (M=4.00, SD=0.43)</td>
+        <td>Pers1 (M=4.20, SD=0.52)</td>
+      </tr>
+      <tr>
+        <td>2</td>
+        <td>Proc2 (M=3.70, SD=0.53)</td>
+        <td>Innov2 (M=4.20, SD=0.44)</td>
+        <td>Imag2 (M=4.40, SD=0.33)</td>
+        <td>Prob2 (M=4.00, SD=0.63)</td>
+        <td>Orig2 (M=4.70, SD=0.23)</td>
+        <td>Prod2 (M=4.10, SD=0.44)</td>
+        <td>Pers2 (M=4.30, SD=0.53)</td>
+      </tr>
+      <!-- Add more rows as needed -->
+    </tbody>
+  </table>
+
+  <script>
+    // Function to remove highlight class from all table cells.
+    function removeHighlights() {
+      const cells = document.querySelectorAll('#dataTable td');
+      cells.forEach(cell => cell.classList.remove('highlight'));
+    }
+
+    // Add mouseover and mouseout event listeners to all table cells.
+    const tableCells = document.querySelectorAll('#dataTable td');
+    tableCells.forEach(cell => {
+      cell.addEventListener('mouseover', function() {
+        const text = this.textContent;
+        // For each cell, if its text matches the hovered cell, add the highlight class.
+        tableCells.forEach(c => {
+          if (c.textContent === text) {
+            c.classList.add('highlight');
+          }
+        });
+      });
+      cell.addEventListener('mouseout', function() {
+        removeHighlights();
+      });
+    });
+  </script>
+</body>
+</html>
